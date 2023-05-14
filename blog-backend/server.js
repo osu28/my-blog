@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const articlesRouter = require('./routes/articles');
+const Article = require('./models/article');
 
 mongoose.connect('mongodb://localhost/my-blog', { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -17,6 +18,19 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.json({ message: 'Welcome to My Blog API' });
 });  
+
+// Route to fetch all articles
+app.get('/articles', async (req, res) => {
+    try {
+      // Fetch articles from the database
+      const articles = await Article.find();
+  
+      // Send the articles as a response
+      res.json(articles);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+});
 
 app.use('/articles', articlesRouter);
 
