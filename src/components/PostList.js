@@ -4,8 +4,9 @@ import React from 'react';
 
 const PostList = () => {
   return (
-    <div>
-      {/* This will display the list of posts */}
+    <div className='List_Entry'>
+      <p><a href="/post-link">Title of the Post</a></p>
+      <p>May 14, 2023</p>
     </div>
   );
 };
