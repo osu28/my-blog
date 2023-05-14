@@ -1,18 +1,25 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
-const bodyParser = require('body-parser');
+const articlesRouter = require('./routes/articles');
+
+mongoose.connect('mongodb://localhost/my-blog', { useNewUrlParser: true, useUnifiedTopology: true });
+
+const db = mongoose.connection;
+db.on('error', (error) => console.error(error));
+db.once('open', () => console.log('Connected to Database'));
 
 const app = express();
 
-// Middleware
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
-// Routes
 app.get('/', (req, res) => {
-  res.json({ message: 'API is working' });
-});
+    res.json({ message: 'Welcome to My Blog API' });
+});  
+
+app.use('/articles', articlesRouter);
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
