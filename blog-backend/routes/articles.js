@@ -54,12 +54,13 @@ router.put('/:id', getArticle, async (req, res) => {
 
 // DELETE route for deleting an article
 router.delete('/:id', getArticle, async (req, res) => {
-  try {
-    await res.article.remove();
-    res.json({ message: 'Deleted Article' });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+    try {
+      await Article.findByIdAndDelete(req.params.id);
+      res.json({ message: 'Deleted Article' });
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
 });
+  
 
 module.exports = router;
