@@ -3,6 +3,7 @@
 # dependencies
 /blog-frontend/node_modules
 /blog-backend/node_modules
+/node_modules
 /.pnp
 .pnp.js
 
