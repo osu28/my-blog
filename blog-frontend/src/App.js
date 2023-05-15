@@ -15,7 +15,7 @@ function App() {
         <main className="App-main">
           <Routes>
             <Route path="/" element={<PostList />} />
-            <Route path="/post/:id" element={<Post />} />
+            <Route path="/articles/:id" element={<Post />} />
           </Routes>
         </main>
       </div>
