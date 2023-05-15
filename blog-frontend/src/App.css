@@ -1,7 +1,6 @@
 .App {
   text-align: center;
-  /* background-color: #fffff4; */
-  background-color: yellow;
+  background-color: white;
   min-height: 100vh;  /* covers 100% of the screen */
 }
 

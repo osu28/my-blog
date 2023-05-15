@@ -20,24 +20,28 @@ async function getArticle(req, res, next) {
 
 // POST route for adding a new article
 router.post('/', async (req, res) => {
-  const article = new Article({
-    title: req.body.title,
-    content: req.body.content,
-    // ... any other fields your articles have
-  });
+    const article = new Article({
+        title: req.body.title,
+        preview: req.body.preview,
+        content: req.body.content,
+    });
 
-  try {
-    const newArticle = await article.save();
-    res.status(201).json(newArticle);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
+    try {
+        const newArticle = await article.save();
+        res.status(201).json(newArticle);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
 });
+  
 
 // PUT route for editing an existing article
 router.put('/:id', getArticle, async (req, res) => {
   if (req.body.title != null) {
     res.article.title = req.body.title;
+  }
+  if (req.body.preview != null) {
+    res.article.preview = req.body.preview;
   }
   if (req.body.content != null) {
     res.article.content = req.body.content;
