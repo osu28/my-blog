@@ -7,7 +7,7 @@ const PostList = () => {
   useEffect(() => {
     fetch('http://localhost:3000/articles')
       .then(response => response.json())
-      .then(data => setArticles(data))
+      .then(data => setArticles(data.reverse()))
       .catch(error => console.log(error));
   }, []);
 
