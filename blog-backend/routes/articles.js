@@ -22,7 +22,7 @@ async function getArticle(req, res, next) {
 router.post('/', async (req, res) => {
     const article = new Article({
         title: req.body.title,
-        preview: req.body.preview,
+        preview: new Date().toLocaleDateString(),
         content: req.body.content,
     });
 

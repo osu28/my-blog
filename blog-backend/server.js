@@ -32,6 +32,21 @@ app.get('/articles', async (req, res) => {
     }
 });
 
+app.get('/articles/:id', async (req, res) => {
+    const articleId = req.params.id;
+  
+    try {
+      const article = await Article.findById(articleId);
+      if (!article) {
+        return res.status(404).json({ message: 'Article not found' });
+      }
+      res.json(article);
+    } catch (error) {
+      res.status(500).json({ message: 'Server error' });
+    }
+});
+  
+
 app.use('/articles', articlesRouter);
 
 const PORT = process.env.PORT || 3000;
