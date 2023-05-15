@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
         title: req.body.title,
         preview: new Date().toLocaleDateString(),
         content: req.body.content,
-        slug: req.body.content,
+        slug: req.body.slug,
     });
 
     try {
