@@ -24,6 +24,7 @@ router.post('/', async (req, res) => {
         title: req.body.title,
         preview: new Date().toLocaleDateString(),
         content: req.body.content,
+        slug: req.body.content,
     });
 
     try {
@@ -45,6 +46,9 @@ router.put('/:id', getArticle, async (req, res) => {
   }
   if (req.body.content != null) {
     res.article.content = req.body.content;
+  }
+  if (req.body.content != null) {
+    res.article.slug = req.body.slug;
   }
   // ... repeat for other fields
 

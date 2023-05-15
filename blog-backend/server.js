@@ -32,11 +32,25 @@ app.get('/articles', async (req, res) => {
     }
 });
 
-app.get('/articles/:id', async (req, res) => {
-    const articleId = req.params.id;
+// app.get('/articles/:id', async (req, res) => {
+//     const articleId = req.params.id;
+  
+//     try {
+//       const article = await Article.findById(articleId);
+//       if (!article) {
+//         return res.status(404).json({ message: 'Article not found' });
+//       }
+//       res.json(article);
+//     } catch (error) {
+//       res.status(500).json({ message: 'Server error' });
+//     }
+// });
+
+app.get('/articles/:slug', async (req, res) => {
+    const slug = req.params.slug;
   
     try {
-      const article = await Article.findById(articleId);
+      const article = await Article.findOne({ slug });
       if (!article) {
         return res.status(404).json({ message: 'Article not found' });
       }
@@ -45,6 +59,7 @@ app.get('/articles/:id', async (req, res) => {
       res.status(500).json({ message: 'Server error' });
     }
 });
+  
   
 
 app.use('/articles', articlesRouter);

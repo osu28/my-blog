@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const Post = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const [article, setArticle] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/articles/${id}`)
+    fetch(`http://localhost:3000/articles/${slug}`)
       .then(response => response.json())
       .then(data => setArticle(data))
       .catch(error => console.log(error));
-  }, [id]);
+  }, [slug]);
 
   if (!article) {
     return <p>Loading...</p>;
@@ -19,7 +19,7 @@ const Post = () => {
   return (
     <div className='Article'>
       <h2>{article.title}</h2>
-      <p>{article.content}</p>
+      <p className='Article_Content'>{article.content}</p>
     </div>
   );
 };

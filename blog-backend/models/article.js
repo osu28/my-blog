@@ -12,6 +12,10 @@ const articleSchema = new mongoose.Schema({
   content: {
     type: String,
     required: true
+  },
+  slug: {
+    type: String,
+    required: true
   }
   // add other fields as necessary
 });
