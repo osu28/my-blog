@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { API } from 'aws-amplify';
 
 const PostList = () => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    fetch('https://rppw7rzboi.execute-api.us-east-2.amazonaws.com/dev/articles')
-      .then(response => response.json())
-      .then(data => setArticles(data.reverse()))
-      .catch(error => console.log(error));
+    fetchArticles();
   }, []);
+
+  const fetchArticles = async () => {
+    try {
+      const response = await API.get('rest1', '/articles');
+      setArticles(response.reverse());
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>

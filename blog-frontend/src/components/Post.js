@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { API } from 'aws-amplify';
 
 const Post = () => {
   const { slug } = useParams();
   const [article, setArticle] = useState(null);
 
   useEffect(() => {
-    fetch(`https://rppw7rzboi.execute-api.us-east-2.amazonaws.com/dev/articles/${slug}`)
-      .then(response => response.json())
-      .then(data => setArticle(data))
-      .catch(error => console.log(error));
+    fetchArticle();
   }, [slug]);
+
+  const fetchArticle = async () => {
+    try {
+      const response = await API.get('rest1', `/articles/${slug}`);
+      setArticle(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   if (!article) {
     return <p>Loading...</p>;

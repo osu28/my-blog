@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { withAuthenticator } from 'aws-amplify-react';
 import PostList from './components/PostList';
 import Header from './components/Header';
 import Post from './components/Post';
@@ -23,4 +24,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthenticator(App);
