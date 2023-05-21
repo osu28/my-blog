@@ -6,7 +6,7 @@ const Post = () => {
   const [article, setArticle] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/articles/${slug}`)
+    fetch(`https://rppw7rzboi.execute-api.us-east-2.amazonaws.com/dev/articles/${slug}`)
       .then(response => response.json())
       .then(data => setArticle(data))
       .catch(error => console.log(error));
