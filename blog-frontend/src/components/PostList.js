@@ -5,7 +5,7 @@ const PostList = () => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/articles')
+    fetch('https://rppw7rzboi.execute-api.us-east-2.amazonaws.com/dev/articles')
       .then(response => response.json())
       .then(data => setArticles(data.reverse()))
       .catch(error => console.log(error));

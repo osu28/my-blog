@@ -1,0 +1,14 @@
+{
+  "resourceName": "articleDB",
+  "tableName": "articles",
+  "partitionKey": {
+    "fieldName": "title",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "preview",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}
